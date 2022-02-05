@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
         description : 'string|optional',
         image : 'string|optional',
         type : 'number|optional',
+        stock : 'number',
     }
     const validate = v.validate(req.body, schema);
     if (validate.length) {
@@ -71,6 +72,7 @@ router.put('/:id', async (req, res) => {
         description : 'string|optional',
         image : 'string|optional',
         type : 'number|optional',
+        stock : 'number|optional',
     }
 
     const validate = v.validate(req.body, schema);
