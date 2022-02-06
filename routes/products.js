@@ -7,10 +7,11 @@ require('dotenv').config()
 const authenticateToken = require('../jwt')
 
 
-router.use(authenticateToken)
+// router.use(authenticateToken)
 router.get('/' ,async (req, res) => {
     let product = await Product.findAll({ include: ProductTypes });
-    
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     return res.status(200).json({
         code : 200,
         message : 'success',
@@ -21,6 +22,8 @@ router.get('/' ,async (req, res) => {
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     let product = await Product.findByPk(id, { include: ProductTypes });
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     return res.status(200).json({
         code : 200,
         message : 'success',
@@ -38,6 +41,7 @@ router.post('/', async (req, res) => {
         stock : 'number',
     }
     const validate = v.validate(req.body, schema);
+    res.header("Access-Control-Allow-Origin", "*");
     if (validate.length) {
         return res.status(400).json({
             code : 200,

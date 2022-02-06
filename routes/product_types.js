@@ -6,9 +6,11 @@ const { ProductTypes } = require('../models')
 const authenticateToken = require('../jwt')
 
 
-router.use(authenticateToken)
+// router.use(authenticateToken)
 router.get('/', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     let product = await ProductTypes.findAll();
+   
     return res.status(200).json({
         code : 200,
         message : 'success',
