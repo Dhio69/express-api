@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     return res.status(200).json({
         code : 200,
         message : 'success',
-        data : product
+        data : employee
     })
 })
 
