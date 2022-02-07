@@ -44,8 +44,9 @@ module.exports = (sequelize, DataTypes) => {
     }) 
 
     Product.associate = (models) => {
-        Product.hasOne(models.ProductTypes, {
-            foreignKey: 'id_type'
+        Product.belongsTo(models.ProductTypes, {
+            foreignKey: 'id_type',
+            allowNull: false
         })
     }
 
