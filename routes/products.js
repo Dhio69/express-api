@@ -7,7 +7,7 @@ require('dotenv').config()
 const authenticateToken = require('../jwt')
 
 
-// router.use(authenticateToken)
+router.use(authenticateToken)
 router.get('/' ,async (req, res) => {
     let product = await Product.findAll({ include: ProductTypes });
     res.header('Access-Control-Allow-Origin', '*');

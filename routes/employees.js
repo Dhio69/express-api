@@ -6,6 +6,7 @@ const { Employee } = require('../models')
 require('dotenv').config()
 const authenticateToken = require('../jwt')
 
+router.use(authenticateToken)
 router.get('/', async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     let employee = await Employee.findAll();
