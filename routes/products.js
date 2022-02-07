@@ -97,4 +97,14 @@ router.put('/:id', async (req, res) => {
     })
 })
 
+router.delete('/:id', async (req, res) => {
+    const ids = req.params.id;
+    let product = await Product.destroy({where: { id: ids }})
+    return res.status(200).json({
+        code : 200,
+        message : 'success',
+        data : product
+    })
+})
+
 module.exports = router;

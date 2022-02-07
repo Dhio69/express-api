@@ -91,4 +91,14 @@ router.put('/:id', async (req, res) => {
     })
 })
 
+router.delete('/:id', async (req, res) => {
+    const ids = req.params.id;
+    let employee = await Employee.destroy({where: { id_emp: ids }})
+    return res.status(200).json({
+        code : 200,
+        message : 'success',
+        data : employee
+    })
+})
+
 module.exports = router;
