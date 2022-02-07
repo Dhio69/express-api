@@ -1,6 +1,7 @@
 require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,9 +12,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var productsTypesRouter = require('./routes/product_types');
+var employeeRouter = require('./routes/employees');
 var uploadsRouter = require('./routes/uploads');
 
+
 var app = express();
+app.use(cors())
 
 const swaggerOption = {
   swaggerDefinition: {
@@ -38,14 +42,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/product', productsRouter);
 app.use('/producttype', productsTypesRouter);
+app.use('/employee', employeeRouter);
 app.use('/upload', uploadsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
   next(createError(404));
 });
 
